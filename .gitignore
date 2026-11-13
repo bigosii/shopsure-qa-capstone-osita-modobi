@@ -1,0 +1,14 @@
+# Dependencies
+node_modules/
+
+# Playwright output
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# OS / editor files
+.DS_Store
+.vscode/
+
+# Note: reports/newman/ is intentionally NOT ignored (it must be committed)
