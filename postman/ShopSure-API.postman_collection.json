@@ -12,7 +12,7 @@
       "name": "Products",
       "item": [
         {
-          "name": "Get all products",
+          "name": "Get all products list",
           "event": [
             {
               "listen": "test",
@@ -40,7 +40,7 @@
           "response": []
         },
         {
-          "name": "Reject POST",
+          "name": "Reject POST on products list",
           "event": [
             {
               "listen": "test",
@@ -133,7 +133,112 @@
     },
     {
       "name": "Search",
-      "item": []
+      "item": [
+        {
+          "name": "Search products by term",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const body = pm.response.json();\n\npm.test(\"HTTP status is 200\", () => {\n    pm.response.to.have.status(200);\n});\n\npm.test(\"responseCode in body is 200\", () => {\n    pm.expect(body.responseCode).to.eql(200);\n});\n\npm.test(\"search returns at least one product\", () => {\n    pm.expect(body.products).to.be.an(\"array\").that.is.not.empty;\n});\n\npm.test(\"Content-Type header is present and is text/html\", () => {\n    pm.response.to.have.header(\"Content-Type\");\n    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"text/html\");\n});\n\npm.test(\"every product has id, name, price, brand and category\", () => {\n    body.products.forEach(product => {\n        pm.expect(product).to.have.all.keys(\"id\", \"name\", \"price\", \"brand\", \"category\");\n    });\n});\n\npm.test(\"every result has 'top' in its name or category\", () => {\n    body.products.forEach(product => {\n        const name = product.name.toLowerCase();\n        const category = product.category.category.toLowerCase();\n        pm.expect(name.includes(\"top\") || category.includes(\"top\"),\n            `${product.name} does not relate to 'top'`).to.be.true;\n    });\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "search_product",
+                  "value": "top",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/searchProduct",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "searchProduct"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Reject search without search_product",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const body = pm.response.json();\n\npm.test(\"HTTP status is 200 (API does not use real HTTP error codes)\", () => {\n    pm.response.to.have.status(200);\n});\n\npm.test(\"responseCode is 400 when search_product is missing\", () => {\n    pm.expect(body.responseCode).to.eql(400);\n});\n\npm.test(\"message says search_product parameter is missing\", () => {\n    pm.expect(body.message).to.eql(\"Bad request, search_product parameter is missing in POST request.\");\n});\n\npm.test(\"Content-Type header is present and is text/html\", () => {\n    pm.response.to.have.header(\"Content-Type\");\n    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"text/html\");\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/searchProduct",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "searchProduct"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Search with no matching term",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const body = pm.response.json();\n\npm.test(\"HTTP status is 200\", () => {\n    pm.response.to.have.status(200);\n});\n\npm.test(\"responseCode is 200 for a term with no matches\", () => {\n    pm.expect(body.responseCode).to.eql(200);\n});\n\npm.test(\"products list is empty for a term with no matches\", () => {\n    pm.expect(body.products).to.be.an(\"array\").that.is.empty;\n});\n\npm.test(\"Content-Type header is present and is text/html\", () => {\n    pm.response.to.have.header(\"Content-Type\");\n    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"text/html\");\n});\n"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "search_product",
+                  "value": "zzzqqq",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/searchProduct",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "searchProduct"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
     },
     {
       "name": "Account Lifecycle",
