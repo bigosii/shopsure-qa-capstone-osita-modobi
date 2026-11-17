@@ -1,0 +1,29 @@
+{
+  "name": "shopsure-qa-capstone-osita-modobi",
+  "version": "1.0.0",
+  "description": "ShopSure QA capstone: API tests with Postman/Newman and UI tests with Playwright for automationexercise.com",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:api": "npx newman run postman/ShopSure-API.postman_collection.json -e postman/shopsure.postman_environment.json -r cli,htmlextra --reporter-htmlextra-export reports/newman/shopsure-api-report.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bigosii/shopsure-qa-capstone-osita-modobi.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/bigosii/shopsure-qa-capstone-osita-modobi/issues"
+  },
+  "homepage": "https://github.com/bigosii/shopsure-qa-capstone-osita-modobi#readme",
+  "devDependencies": {
+    "newman": "^6.2.3",
+    "newman-reporter-htmlextra": "^1.23.1"
+  }
+}
