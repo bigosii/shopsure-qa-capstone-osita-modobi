@@ -41,5 +41,6 @@ _TODO: API endpoints and UI flows covered_
 | 5 | Low | All endpoints | `Content-Type` is `text/html; charset=utf-8` although the body is JSON. |
 | 6 | Low | `GET /api/brandsList` | Returns 34 entries but only 8 distinct brands (one entry per product, with duplicates such as "Polo" ×6). |
 | 7 | Low | `POST /api/verifyLogin` | The same message is returned whether the email or the password is missing, so the error does not say which field is absent. |
-| 8 | Info | `POST /api/searchProduct` | An empty `search_product` value returns all products instead of a 400 error. |
-| 9 | Info | `POST /api/searchProduct` | Searching "top" also returns shirts, because the search matches the category ("Tops & Shirts"), not only the product name. |
+| 8 | Low | `PUT /api/updateAccount`, `DELETE /api/deleteAccount` | A wrong password returns `404 "Account not found!"` even though the account exists. The correct code is 401 Unauthorized with a message about invalid credentials; the current message misleads anyone debugging. |
+| 9 | Info | `POST /api/searchProduct` | An empty `search_product` value returns all products instead of a 400 error. |
+| 10 | Info | `POST /api/searchProduct` | Searching "top" also returns shirts, because the search matches the category ("Tops & Shirts"), not only the product name. |
