@@ -1,0 +1,17 @@
+{
+  "titles": ["Mr", "Mrs"],
+  "firstNames": ["Ada", "Chidi", "Grace", "Tunde", "Maria", "James"],
+  "lastNames": ["Okafor", "Adeyemi", "Smith", "Brown", "Garcia", "Nwosu"],
+  "birthDays": ["1", "5", "10", "15", "20", "25", "28"],
+  "birthMonths": ["January", "March", "May", "July", "September", "November"],
+  "birthYears": ["1985", "1990", "1995", "2000"],
+  "locations": [
+    { "country": "India", "state": "Maharashtra", "city": "Mumbai", "zipcode": "400001" },
+    { "country": "United States", "state": "California", "city": "San Francisco", "zipcode": "94105" },
+    { "country": "Canada", "state": "Ontario", "city": "Toronto", "zipcode": "M5V2T6" },
+    { "country": "Australia", "state": "New South Wales", "city": "Sydney", "zipcode": "2000" },
+    { "country": "Israel", "state": "Tel Aviv District", "city": "Tel Aviv", "zipcode": "6100000" },
+    { "country": "New Zealand", "state": "Auckland", "city": "Auckland", "zipcode": "1010" },
+    { "country": "Singapore", "state": "Singapore", "city": "Singapore", "zipcode": "018956" }
+  ]
+}
