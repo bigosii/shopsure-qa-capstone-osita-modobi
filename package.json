@@ -6,8 +6,12 @@
   "directories": {
     "test": "tests"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+   "scripts": {
+    "test": "npx playwright test",
+    "test:headed": "npx playwright test --headed",
+    "test:chromium": "npx playwright test --project=chromium",
+    "test:firefox": "npx playwright test --project=firefox",
+    "report": "npx playwright show-report",
     "test:api": "npx newman run postman/ShopSure-API.postman_collection.json -e postman/shopsure.postman_environment.json -r cli,htmlextra --reporter-htmlextra-export reports/newman/shopsure-api-report.html",
     "test:utils": "node tests/utils/utils.check.js"
   },
