@@ -1,5 +1,5 @@
 // Turns price text from the site, e.g. "Rs. 500", into the number 500
-function parsePriceText(priceText) {
+export function parsePriceText(priceText) {
   if (typeof priceText !== 'string') {
     throw new Error('parsePriceText() needs a string, e.g. "Rs. 500"');
   }
@@ -11,7 +11,7 @@ function parsePriceText(priceText) {
 }
 
 // Price of one cart row: unit price x quantity
-function calculateLineTotal(unitPrice, quantity) {
+export function calculateLineTotal(unitPrice, quantity) {
   if (typeof unitPrice !== 'number' || Number.isNaN(unitPrice) || unitPrice < 0) {
     throw new Error('unitPrice must be a number of 0 or more');
   }
@@ -22,7 +22,7 @@ function calculateLineTotal(unitPrice, quantity) {
 }
 
 // Sum of every row in the cart; an empty cart is 0
-function calculateCartTotal(cartItemList) {
+export function calculateCartTotal(cartItemList) {
   if (!Array.isArray(cartItemList)) {
     throw new Error('calculateCartTotal() needs an array of { unitPrice, quantity }');
   }
@@ -33,4 +33,3 @@ function calculateCartTotal(cartItemList) {
   return cartTotal;
 }
 
-module.exports = { parsePriceText, calculateLineTotal, calculateCartTotal };
