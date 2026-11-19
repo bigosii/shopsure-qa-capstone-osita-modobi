@@ -41,4 +41,9 @@ export class LoginPage extends BasePage {
   async verifyLoginErrorIsVisible() {
     await expect(this.loginErrorMessage).toBeVisible();
   }
+
+  async verifyIsOnLoginPage() {
+    await expect(this.page).toHaveURL(/\/login$/);
+    await this.verifyLoginFormIsVisible();
+  }
 }
