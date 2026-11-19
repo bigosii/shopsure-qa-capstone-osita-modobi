@@ -19,4 +19,9 @@ export class HeaderComponent {
   async verifyLoggedInAs(userName) {
     await expect(this.loggedInUserLabel).toContainText(userName);
   }
+
+  async verifyUserIsLoggedOut() {
+    await expect(this.loggedInUserLabel).toBeHidden();
+    await expect(this.signupLoginLink).toBeVisible();
+  }
 }

@@ -25,4 +25,12 @@ test.describe('Login', () => {
     await loginPage.verifyLoginErrorIsVisible();
     await loginPage.verifyIsOnLoginPage();
   });
+
+  test('logged-in user can log out and returns to the login page', async () => {
+    await loginPage.loginWithCredentials(registeredUser.email, registeredUser.password);
+    await headerComponent.verifyLoggedInAs(registeredUser.name);
+    await headerComponent.logout();
+    await headerComponent.verifyUserIsLoggedOut();
+    await loginPage.verifyIsOnLoginPage();
+  });
 });
