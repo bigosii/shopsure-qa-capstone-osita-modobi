@@ -1,10 +1,9 @@
-const signupOptions = require('../test-data/signupOptions.json');
-
+import signupOptions from '../test-data/signupOptions.json' with { type: 'json' };
 // Counts how many emails this process has made, so two calls in the
 // same millisecond still get different values. "let" because it changes.
 let emailCounter = 0;
 
-class TestDataGenerator {
+export class TestDataGenerator {
   // Prefix + timestamp + counter + random letters + @testmail.com
   generateUniqueEmail(prefix = 'shopsure') {
     emailCounter += 1;
@@ -55,4 +54,3 @@ class TestDataGenerator {
   }
 }
 
-module.exports = TestDataGenerator;

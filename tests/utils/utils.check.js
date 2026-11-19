@@ -1,12 +1,11 @@
-const assert = require('node:assert');
-const TestDataGenerator = require('../../utils/TestDataGenerator');
-const {
+import assert from 'node:assert';
+import { TestDataGenerator } from '../../utils/TestDataGenerator.js';
+import {
   parsePriceText,
   calculateLineTotal,
   calculateCartTotal,
-} = require('../../utils/cartPriceCalculator');
-const signupOptions = require('../../test-data/signupOptions.json');
-
+} from '../../utils/cartPriceCalculator.js';
+import signupOptions from '../../test-data/signupOptions.json' with { type: 'json' };
 const generator = new TestDataGenerator();
 let passedCount = 0;
 let failedCount = 0;
