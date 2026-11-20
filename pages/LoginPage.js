@@ -10,6 +10,11 @@ export class LoginPage extends BasePage {
     this.loginPasswordInput = page.getByTestId('login-password');
     this.loginSubmitButton = page.getByTestId('login-button');
     this.loginErrorMessage = page.getByText('Your email or password is incorrect!');
+    this.signupFormHeading = page.getByRole('heading', { name: 'New User Signup!' });
+    this.signupNameInput = page.getByTestId('signup-name');
+    this.signupEmailInput = page.getByTestId('signup-email');
+    this.signupSubmitButton = page.getByTestId('signup-button');
+    this.signupErrorMessage = page.getByText(/already exist/i);
   }
 
   async open() {
@@ -45,5 +50,25 @@ export class LoginPage extends BasePage {
   async verifyIsOnLoginPage() {
     await expect(this.page).toHaveURL(/\/login$/);
     await this.verifyLoginFormIsVisible();
+  }
+
+  async enterSignupName(name) {
+    await this.signupNameInput.fill(name);
+  }
+
+  async enterSignupEmail(email) {
+    await this.signupEmailInput.fill(email);
+  }
+
+  async submitSignupForm() {
+    await this.signupSubmitButton.click();
+  }
+
+  async verifySignupFormIsVisible() {
+    await expect(this.signupFormHeading).toBeVisible();
+  }
+
+  async verifySignupErrorText(expectedText) {
+    await expect(this.signupErrorMessage).toHaveText(expectedText);
   }
 }
