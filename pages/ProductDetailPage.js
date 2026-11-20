@@ -11,6 +11,34 @@ export class ProductDetailPage extends BasePage {
     this.productAvailability = this.productInformation.locator('p').filter({ hasText: 'Availability:' });
     this.productCondition = this.productInformation.locator('p').filter({ hasText: 'Condition:' });
     this.productBrand = this.productInformation.locator('p').filter({ hasText: 'Brand:' });
+    this.quantityInput = this.productInformation.getByRole('spinbutton');
+    this.addToCartButton = this.productInformation.getByRole('button', { name: 'Add to cart' });
+    this.addedToCartHeading = page.getByRole('heading', { name: 'Added!' });
+    this.continueShoppingButton = page.getByRole('button', { name: 'Continue Shopping' });
+  }
+
+  async setQuantity(quantity) {
+    await this.quantityInput.fill(String(quantity));
+  }
+
+  async clickAddToCart() {
+    await this.addToCartButton.click();
+  }
+
+  async continueShopping() {
+    await this.continueShoppingButton.click();
+  }
+
+  // The one combining method on this page: set quantity, add, confirm, close the pop-up
+  async addToCartWithQuantity(quantity) {
+    await this.setQuantity(quantity);
+    await this.clickAddToCart();
+    await this.verifyProductAddedToCart();
+    await this.continueShopping();
+  }
+
+  async verifyProductAddedToCart() {
+    await expect(this.addedToCartHeading).toBeVisible();
   }
 
   async verifyProductDetails(expectedProduct) {
