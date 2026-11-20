@@ -1,4 +1,4 @@
-import { test } from '@playwright/test';
+import { test } from '../fixtures/baseTest.js';
 import { LoginPage } from '../pages/LoginPage.js';
 import { HeaderComponent } from '../pages/HeaderComponent.js';
 import registeredUser from '../test-data/registeredUser.json' with { type: 'json' };

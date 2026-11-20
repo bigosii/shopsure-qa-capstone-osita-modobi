@@ -1,4 +1,4 @@
-import { test } from '@playwright/test';
+import { test } from '../fixtures/baseTest.js';
 import { LoginPage } from '../pages/LoginPage.js';
 import { AccountInformationPage } from '../pages/AccountInformationPage.js';
 import { AccountStatusPage } from '../pages/AccountStatusPage.js';
