@@ -1,0 +1,7 @@
+{
+  "productsToAdd": [
+    { "name": "Blue Top", "unitPrice": 500, "quantity": 3 },
+    { "name": "Men Tshirt", "unitPrice": 400, "quantity": 1 }
+  ],
+  "productToRemove": "Men Tshirt"
+}
