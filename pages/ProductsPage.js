@@ -29,6 +29,8 @@ export class ProductsPage extends BasePage {
   async openProductDetails(productName) {
     const productCard = this.productCards.filter({ hasText: productName });
     await productCard.getByRole('link', { name: 'View Product' }).click();
+    // Wait until the details page has fully loaded, so its buttons work when clicked
+    await this.page.waitForURL(/\/product_details\//);
   }
 
   async verifyAllProductsAreVisible() {
